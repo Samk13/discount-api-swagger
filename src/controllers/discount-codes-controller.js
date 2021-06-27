@@ -15,7 +15,10 @@ const getAllDiscountCodes = async (req, res) => {
 
 const getDiscountCodeById = async (req, res) => {
   try {
-    const discount_code = await req.app.db.get("discount_codes").find({ id: req.params.id }).value();
+    const discount_code = await req.app.db
+      .get("discount_codes")
+      .find({ id: req.params.id })
+      .value();
 
     if(!discount_code){
       res.sendStatus(404)
@@ -36,11 +39,16 @@ const setDiscountCode = async (req, res) => {
       ...req.body,
     };
 
-    await req.app.db.get("discount_codes").push(discountCode).write();
+    await req.app.db
+      .get("discount_codes")
+      .push(discountCode)
+      .write();
 
     res.send(discountCode)
   } catch (error) {
-    return res.status(500).send(error);
+    return res
+      .status(500)
+      .send(error)
   }
 }
 
@@ -52,14 +60,22 @@ const updateDiscountCode = async (req, res) => {
       .assign(req.body)
       .write();
 
-    res.send(await req.app.db.get("discount_codes").find({ id: req.params.id }));
+    res.send(await req.app.db
+      .get("discount_codes")
+      .find({ id: req.params.id })
+    );
   } catch (error) {
-    return res.status(500).send(error);
+    return res
+      .status(500)
+      .send(error);
   }
 }
 
 const deleteDiscountCode = async (req, res) => {
-  await req.app.db.get("discount_codes").remove({ id: req.params.id }).write();
+  await req.app.db
+    .get("discount_codes")
+    .remove({ id: req.params.id })
+    .write();
 
   res.sendStatus(200);
 }

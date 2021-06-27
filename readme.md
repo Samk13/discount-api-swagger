@@ -67,12 +67,9 @@ tech, not trying to build a new business. :)
 
 ## User stories - Get discount code
 
-- As a brand I want to have discount codes generated for me so that I don’t have to deal
-  with this administration myself.
-- As a logged in user I want to be able to get a discount code so that I can get a discount
-  on a purchase.
-- As a brand I want to be notified about a user getting a discount code so that I can
-  process information about the user for my loyalty programme.
+- As a brand I want to have discount codes generated for me so that I don’t have to deal with this administration myself.
+- As a logged in user I want to be able to get a discount code so that I can get a discount on a purchase.
+- As a brand I want to be notified about a user getting a discount code so that I can process information about the user for my loyalty programme.
 
 ## Programming task
 
@@ -89,13 +86,10 @@ to:
 - Document your endpoints.
 - Document how to set up and start the application.
 
-- The storage for discount codes in the service can be a real database, something in
-  memory or just hard coded mock data as you like and have time for. Even if you end up
-  using a simplified datastore we are interested in how you model and structure the data.
+- The storage for discount codes in the service can be a real database, something in memory or just hard coded mock data as you like and have time for. Even if you end up using a simplified datastore we are interested in how you model and structure the data.
 
 Feel free to use any language, web framework or 3rd party modules that you’d like.
-We
-recommend using something you are already familiar and comfortable with.
+We recommend using something you are already familiar and comfortable with.
 Please send us a link to a github repo with your implementation.
 Don’t let the above limit you; if you can derive inspiration from your thought process in
 the previous feature design task, please feel free to do so. We are interested in seeing

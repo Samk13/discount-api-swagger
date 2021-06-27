@@ -87,6 +87,7 @@ const {
  *                 $ref: '#/components/schemas/Discount_code'
  */
 
+// TODO add validation and auth middleware to all routes
 router.get("/", getAllDiscountCodes);
 
 /**
