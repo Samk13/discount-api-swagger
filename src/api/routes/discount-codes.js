@@ -1,8 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { nanoid } = require("nanoid");
 
-const idLength = 8;
+
+const {
+  getAllDiscountCodes,
+  getDiscountCodeById,
+  updateDiscountCode,
+  deleteDiscountCode,
+  setDiscountCode
+} = require("../../controllers/discount-codes-controller")
+
 
 /**
  * @swagger
@@ -53,11 +60,7 @@ const idLength = 8;
  *                 $ref: '#/components/schemas/Discount_code'
  */
 
-router.get("/", (req, res) => {
-  const books = req.app.db.get("books");
-
-  res.send(books);
-});
+router.get("/", getAllDiscountCodes);
 
 /**
  * @swagger
@@ -83,15 +86,7 @@ router.get("/", (req, res) => {
  *         description: The Discount_code was not found
  */
 
-router.get("/:id", (req, res) => {
-  const book = req.app.db.get("books").find({ id: req.params.id }).value();
-
-  if(!book){
-    res.sendStatus(404)
-  }
-
-  res.send(book);
-});
+router.get("/:id", getDiscountCodeById);
 
 /**
  * @swagger
@@ -116,20 +111,7 @@ router.get("/:id", (req, res) => {
  *         description: Some server error
  */
 
-router.post("/", (req, res) => {
-  try {
-    const book = {
-      id: nanoid(idLength),
-      ...req.body,
-    };
-
-    req.app.db.get("books").push(book).write();
-
-    res.send(book)
-  } catch (error) {
-    return res.status(500).send(error);
-  }
-});
+router.post("/", setDiscountCode);
 
 /**
  * @swagger
@@ -163,19 +145,7 @@ router.post("/", (req, res) => {
  *        description: Some error happened
  */
 
-router.put("/:id", (req, res) => {
-  try {
-    req.app.db
-      .get("books")
-      .find({ id: req.params.id })
-      .assign(req.body)
-      .write();
-
-    res.send(req.app.db.get("books").find({ id: req.params.id }));
-  } catch (error) {
-    return res.status(500).send(error);
-  }
-});
+router.put("/:id", updateDiscountCode);
 
 /**
  * @swagger
@@ -193,15 +163,11 @@ router.put("/:id", (req, res) => {
  *
  *     responses:
  *       200:
- *         description: The discount_code was deleted
+ *         description: The discount_code was deleted successfully
  *       404:
  *         description: The discount_code was not found
  */
 
-router.delete("/:id", (req, res) => {
-  req.app.db.get("books").remove({ id: req.params.id }).write();
-
-  res.sendStatus(200);
-});
+router.delete("/:id", deleteDiscountCode);
 
 module.exports = router;

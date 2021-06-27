@@ -1,4 +1,4 @@
-# Discount_code API
+# Discount code API
 
 ## How to start:
 
@@ -25,6 +25,8 @@
 ```
 
 # Feature description
+
+[information about discount coupons ](https://www.nngroup.com/articles/applying-discounts/)
 
 ## Feature design task
 

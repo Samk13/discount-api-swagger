@@ -4,16 +4,16 @@ const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const discount_code_router = require("./routes/discount-codes");
+const discount_code_router = require("./src/api/routes/discount-codes");
 const swaggerUI = require("swagger-ui-express");
 
 const PORT = process.env.PORT || 4000;
 
 const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync("db.json");
+const adapter = new FileSync("./src/db/db.json");
 const db = low(adapter);
 
-db.defaults({ books: [] }).write();
+db.defaults({ discount_codes: [] }).write();
 
 const options = {
   definition: {
@@ -29,7 +29,7 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/*.js"],
+  apis: ["./src/api/routes/*.js"],
 };
 
 const specs = swaggerJsDoc(options);
