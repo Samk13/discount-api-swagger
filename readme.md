@@ -15,13 +15,13 @@
 #### for Development:
 
 ```bash
-    yarn start:nodemon
+    yarn start:dev
 ```
 
 #### For production:
 
 ```bash
-    yarn start:node
+    yarn start
 ```
 
 # Feature description
