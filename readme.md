@@ -1,12 +1,32 @@
-# discount code test
+# Discount_code API
 
 ## How to start:
+
+### With Docker
 
 - Make sure you have Docker installed and running on your machine
 - run:
   ```bash
       docker-compose up --build
   ```
+
+### Without Docker
+
+#### for Development:
+
+```bash
+    yarn start:nodemon
+```
+
+#### For production:
+
+```bash
+    yarn start:node
+```
+
+## <div style="height: 100px; background-color: green">
+
+# Feature description
 
 ## Feature design task
 
