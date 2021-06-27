@@ -124,7 +124,7 @@ router.post("/", (req, res) => {
 		};
 
     req.app.db.get("books").push(book).write();
-    
+
     res.send(book)
 	} catch (error) {
 		return res.status(500).send(error);
@@ -190,7 +190,7 @@ router.put("/:id", (req, res) => {
  *           type: string
  *         required: true
  *         description: The book id
- * 
+ *
  *     responses:
  *       200:
  *         description: The book was deleted

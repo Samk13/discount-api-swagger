@@ -1,15 +1,15 @@
-const express = require("express");
+require("dotenv").config()
+const low = require("lowdb");
 const cors = require("cors");
 const morgan = require("morgan");
-const low = require("lowdb");
-const swaggerUI = require("swagger-ui-express");
+const express = require("express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const booksRouter = require("./routes/books");
+const swaggerUI = require("swagger-ui-express");
 
 const PORT = process.env.PORT || 4000;
 
 const FileSync = require("lowdb/adapters/FileSync");
-
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
@@ -44,6 +44,10 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use("/books", booksRouter);
+app.use("/api/books", booksRouter);
+
+app.get('/', (req, res) => {
+  res.sendFile('./src/pages/home.html', { root: __dirname });
+});
 
 app.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
