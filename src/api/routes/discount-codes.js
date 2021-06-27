@@ -19,7 +19,9 @@ const {
  *       type: object
  *       required:
  *         - title
- *         - author
+ *         - type
+ *         - expired
+ *         - amount
  *       properties:
  *         id:
  *           type: string
@@ -27,13 +29,38 @@ const {
  *         title:
  *           type: string
  *           description: The Discount code title
- *         author:
+ *         type:
  *           type: string
- *           description: The Discount_code author
+ *           description: The Discount_code type [percentage, freeShipping,buyoneGetOne]
+ *         description:
+ *           type: string
+ *           description: description for the deal the user will get if he use the code
+ *         expired:
+ *           type: boolean
+ *           description: If the coupon is been used
+ *         freeShipping:
+ *           type: boolean
+ *           description: if the coupon offer free shipping
+ *         currency:
+ *           type: string
+ *           description: the currency of the code
+ *         amount:
+ *           type: string
+ *           description: The percentage of the discount
+ *         usedBy:
+ *           type: string
+ *           description: the user who used this discount coupon
  *       example:
  *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         author: Alexander K. Dewdney
+ *         title: discount code
+ *         description: description for the discount visible to the user
+ *         type: percentage
+ *         freeShipping: false
+ *         expired: false
+ *         currency: sek
+ *         amount: 12
+ *         usedBy: logedIn user
+ *
  */
 
  /**

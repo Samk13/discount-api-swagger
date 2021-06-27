@@ -2,18 +2,36 @@
   "discount_codes": [
     {
       "id": "iEuOBYkU",
+      "description": "description for the coupon ",
       "title": "The Little Book of Semaphores",
-      "author": "Allen B. Downey "
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "sek",
+      "expired": false,
+      "amount": "12",
+      "usedBy": ""
     },
     {
       "id": "ukjXyUuM",
       "title": "The Elements of Programming Style",
-      "author": "Brian W. Kernighan and Phillip J. Plauger"
+      "description": "description for the coupon",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "sek",
+      "expired": false,
+      "amount": "12",
+      "usedBy": ""
     },
     {
       "id": "BDUDxb6F",
+      "description": "description for the coupon",
       "title": "The New Turing Omnibus",
-      "author": "Alexander K. Dewdney"
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "sek",
+      "expired": false,
+      "amount": "12",
+      "usedBy": ""
     }
   ]
 }

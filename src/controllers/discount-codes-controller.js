@@ -1,31 +1,42 @@
 const { nanoid } = require("nanoid");
 const idLength = 8;
 
-const getAllDiscountCodes = (req, res) => {
-  const discount_codes = req.app.db.get("discount_codes");
 
-  res.send(discount_codes);
-}
+const getAllDiscountCodes = async (req, res) => {
+  try {
+    const discount_codes = await req.app.db.get("discount_codes");
+    res.send(discount_codes);
 
-const getDiscountCodeById = (req, res) => {
-  const discount_code = req.app.db.get("discount_codes").find({ id: req.params.id }).value();
-
-  if(!discount_code){
-    res.sendStatus(404)
+  } catch(error) {
+    return res.status(500).send(error)
   }
 
-  res.send(discount_code);
+}
+
+const getDiscountCodeById = async (req, res) => {
+  try {
+    const discount_code = await req.app.db.get("discount_codes").find({ id: req.params.id }).value();
+
+    if(!discount_code){
+      res.sendStatus(404)
+    }
+
+    res.send(discount_code)
+
+  } catch (error) {
+    return res.status(500).send(error)
+  }
 }
 
 
-const setDiscountCode = (req, res) => {
+const setDiscountCode = async (req, res) => {
   try {
     const discountCode = {
       id: nanoid(idLength),
       ...req.body,
     };
 
-    req.app.db.get("discount_codes").push(discountCode).write();
+    await req.app.db.get("discount_codes").push(discountCode).write();
 
     res.send(discountCode)
   } catch (error) {
@@ -33,22 +44,22 @@ const setDiscountCode = (req, res) => {
   }
 }
 
-const updateDiscountCode = (req, res) => {
+const updateDiscountCode = async (req, res) => {
   try {
-    req.app.db
+    await req.app.db
       .get("discount_codes")
       .find({ id: req.params.id })
       .assign(req.body)
       .write();
 
-    res.send(req.app.db.get("discount_codes").find({ id: req.params.id }));
+    res.send(await req.app.db.get("discount_codes").find({ id: req.params.id }));
   } catch (error) {
     return res.status(500).send(error);
   }
 }
 
-const deleteDiscountCode = (req, res) => {
-  req.app.db.get("discount_codes").remove({ id: req.params.id }).write();
+const deleteDiscountCode = async (req, res) => {
+  await req.app.db.get("discount_codes").remove({ id: req.params.id }).write();
 
   res.sendStatus(200);
 }
