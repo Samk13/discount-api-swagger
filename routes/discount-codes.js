@@ -8,7 +8,7 @@ const idLength = 8;
  * @swagger
  * components:
  *   schemas:
- *     Book:
+ *     Discount_code:
  *       type: object
  *       required:
  *         - title
@@ -16,13 +16,13 @@ const idLength = 8;
  *       properties:
  *         id:
  *           type: string
- *           description: The auto-generated id of the book
+ *           description: The auto-generated id of the discount code
  *         title:
  *           type: string
- *           description: The book title
+ *           description: The Discount code title
  *         author:
  *           type: string
- *           description: The book author
+ *           description: The Discount_code author
  *       example:
  *         id: d5fE_asz
  *         title: The New Turing Omnibus
@@ -32,55 +32,55 @@ const idLength = 8;
  /**
   * @swagger
   * tags:
-  *   name: Books
-  *   description: The books managing API
+  *   name: Discount code
+  *   description: The Discount code managing API
   */
 
 /**
  * @swagger
- * /books:
+ * /api/discount_code:
  *   get:
- *     summary: Returns the list of all the books
- *     tags: [Books]
+ *     summary: Returns the list of all the Discount_codes
+ *     tags: [Discount code]
  *     responses:
  *       200:
- *         description: The list of the books
+ *         description: The list of the Discount_code
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Book'
+ *                 $ref: '#/components/schemas/Discount_code'
  */
 
 router.get("/", (req, res) => {
-	const books = req.app.db.get("books");
+  const books = req.app.db.get("books");
 
-	res.send(books);
+  res.send(books);
 });
 
 /**
  * @swagger
- * /books/{id}:
+ * /api/discount_code/{id}:
  *   get:
- *     summary: Get the book by id
- *     tags: [Books]
+ *     summary: Get the discount_codes by id
+ *     tags: [Discount code]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The book id
+ *         description: The Discount_code id
  *     responses:
  *       200:
- *         description: The book description by id
+ *         description: The Discount_code description by id
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Book'
+ *               $ref: '#/components/schemas/Discount_code'
  *       404:
- *         description: The book was not found
+ *         description: The Discount_code was not found
  */
 
 router.get("/:id", (req, res) => {
@@ -90,118 +90,118 @@ router.get("/:id", (req, res) => {
     res.sendStatus(404)
   }
 
-	res.send(book);
+  res.send(book);
 });
 
 /**
  * @swagger
- * /books:
+ * /api/discount_code:
  *   post:
- *     summary: Create a new book
- *     tags: [Books]
+ *     summary: Create a new Discount_code
+ *     tags: [Discount code]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Book'
+ *             $ref: '#/components/schemas/Discount_code'
  *     responses:
  *       200:
- *         description: The book was successfully created
+ *         description: The Discount_code was successfully created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Book'
+ *               $ref: '#/components/schemas/Discount_code'
  *       500:
  *         description: Some server error
  */
 
 router.post("/", (req, res) => {
-	try {
-		const book = {
-			id: nanoid(idLength),
-			...req.body,
-		};
+  try {
+    const book = {
+      id: nanoid(idLength),
+      ...req.body,
+    };
 
     req.app.db.get("books").push(book).write();
 
     res.send(book)
-	} catch (error) {
-		return res.status(500).send(error);
-	}
+  } catch (error) {
+    return res.status(500).send(error);
+  }
 });
 
 /**
  * @swagger
- * /books/{id}:
+ * /api/discount_code/{id}:
  *  put:
- *    summary: Update the book by the id
- *    tags: [Books]
+ *    summary: Update the Discount_code by the id
+ *    tags: [Discount code]
  *    parameters:
  *      - in: path
  *        name: id
  *        schema:
  *          type: string
  *        required: true
- *        description: The book id
+ *        description: The Discount_code id
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Book'
+ *            $ref: '#/components/schemas/Discount_code'
  *    responses:
  *      200:
- *        description: The book was updated
+ *        description: The Discount_code was updated
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Book'
+ *              $ref: '#/components/schemas/Discount_code'
  *      404:
- *        description: The book was not found
+ *        description: The Discount_code was not found
  *      500:
  *        description: Some error happened
  */
 
 router.put("/:id", (req, res) => {
-	try {
-		req.app.db
-			.get("books")
-			.find({ id: req.params.id })
-			.assign(req.body)
-			.write();
+  try {
+    req.app.db
+      .get("books")
+      .find({ id: req.params.id })
+      .assign(req.body)
+      .write();
 
-		res.send(req.app.db.get("books").find({ id: req.params.id }));
-	} catch (error) {
-		return res.status(500).send(error);
-	}
+    res.send(req.app.db.get("books").find({ id: req.params.id }));
+  } catch (error) {
+    return res.status(500).send(error);
+  }
 });
 
 /**
  * @swagger
- * /books/{id}:
+ * /api/discount_code/{id}:
  *   delete:
- *     summary: Remove the book by id
- *     tags: [Books]
+ *     summary: Remove the discount_code by id
+ *     tags: [Discount code]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The book id
+ *         description: The discount_code id
  *
  *     responses:
  *       200:
- *         description: The book was deleted
+ *         description: The discount_code was deleted
  *       404:
- *         description: The book was not found
+ *         description: The discount_code was not found
  */
 
 router.delete("/:id", (req, res) => {
-	req.app.db.get("books").remove({ id: req.params.id }).write();
+  req.app.db.get("books").remove({ id: req.params.id }).write();
 
-	res.sendStatus(200);
+  res.sendStatus(200);
 });
 
 module.exports = router;

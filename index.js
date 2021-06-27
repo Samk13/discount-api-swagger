@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const booksRouter = require("./routes/books");
+const discount_code_router = require("./routes/discount-codes");
 const swaggerUI = require("swagger-ui-express");
 
 const PORT = process.env.PORT || 4000;
@@ -16,20 +16,20 @@ const db = low(adapter);
 db.defaults({ books: [] }).write();
 
 const options = {
-	definition: {
-		openapi: "3.0.0",
-		info: {
-			title: "Library API",
-			version: "1.0.0",
-			description: "A simple Express Library API",
-		},
-		servers: [
-			{
-				url: "http://localhost:4000",
-			},
-		],
-	},
-	apis: ["./routes/*.js"],
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Discount code API",
+      version: "1.0.0",
+      description: "Billogram discount code API code test",
+    },
+    servers: [
+      {
+        url: "http://localhost:4000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
 };
 
 const specs = swaggerJsDoc(options);
@@ -44,7 +44,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use("/api/books", booksRouter);
+app.use("/api/discount_code", discount_code_router);
 
 app.get('/', (req, res) => {
   res.sendFile('./src/pages/home.html', { root: __dirname });
