@@ -24,8 +24,6 @@
     yarn start:node
 ```
 
-## <div style="height: 100px; background-color: green">
-
 # Feature description
 
 ## Feature design task
