@@ -14,18 +14,33 @@ const fetchAllDiscountCodes = async (req) => {
 const writeDiscount = async (req) => {
   try {
     const discountCode = {
-      ...req.body,
       id: nanoid(idLength),
+      description: req.body.description,
+      title: req.body.title,
+      discount_type: req.body.discount_type,
+      freeShipping: req.body.freeShipping,
+      currency: req.body.currency,
+      expired: req.body.expired,
+      amount: req.body.amount,
+      usedBy: req.body.usedBy,
       created: new Date(Date.now()),
       edited: null
     };
-
-    await req.app.db
+    const result = []
+    const copies = req.body.copies &&  parseInt(req.body.copies) || 1;
+      for (let i = 0; i < copies ; i++){
+        result.push({
+          ...discountCode,
+          id: nanoid(idLength),
+          created: new Date(Date.now())
+        })
+      }
+      await req.app.db
       .get("discount_codes")
-      .push(discountCode)
+      .push(...result)
       .write();
+      return result
 
-    return discountCode
   } catch (error) {
     throw new Error(error)
   }
@@ -43,7 +58,7 @@ const fetchDiscountById = async (req) => {
   }
 }
 
-const writeDiscountUpdate = async (req) => {
+const writeDiscountEdit = async (req) => {
   try {
     await req.app.db
     .get("discount_codes")
@@ -76,7 +91,7 @@ const destroyDiscountCode = async (req) => {
 module.exports = {
   fetchAllDiscountCodes,
   destroyDiscountCode,
-  writeDiscountUpdate,
+  writeDiscountUpdate: writeDiscountEdit,
   fetchDiscountById,
   writeDiscount
 }
