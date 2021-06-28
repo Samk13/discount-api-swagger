@@ -8,9 +8,11 @@ const {
   updateDiscountCode,
   deleteDiscountCode,
   setDiscountCode
-} = require("../../controllers/discount-codes-controller")
+} = require("../controllers/discount-codes-controller")
 
+const { validateParams } = require("../middlewares/reqValidator")
 
+const { postDiscountParams } = require("../config/reqValidationrules")
 /**
  * @swagger
  * components:
@@ -54,11 +56,11 @@ const {
  *         id: d5fE_asz
  *         title: discount code
  *         description: description for the discount visible to the user
- *         type: percentage
+ *         discount_type: percentage
  *         freeShipping: false
  *         expired: false
- *         currency: sek
- *         amount: 12
+ *         currency: SEK
+ *         amount: "12"
  *         usedBy: logedIn user
  *
  */
@@ -139,7 +141,7 @@ router.get("/:id", getDiscountCodeById);
  *         description: Some server error
  */
 
-router.post("/", setDiscountCode);
+router.post("/",validateParams(postDiscountParams), setDiscountCode);
 
 /**
  * @swagger

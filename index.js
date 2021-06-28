@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const discount_code_router = require("./src/api/routes/discount-codes");
+const discount_code_router = require("./src/routes/discount-codes");
 const swaggerUI = require("swagger-ui-express");
 
 const PORT = process.env.PORT || 4000;
@@ -29,7 +29,7 @@ const options = {
       },
     ],
   },
-  apis: ["./src/api/routes/*.js"],
+  apis: ["./src/routes/*.js"],
 };
 
 const specs = swaggerJsDoc(options);

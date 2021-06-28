@@ -35,8 +35,10 @@ const getDiscountCodeById = async (req, res) => {
 const setDiscountCode = async (req, res) => {
   try {
     const discountCode = {
-      id: nanoid(idLength),
       ...req.body,
+      id: nanoid(idLength),
+      created: new Date(Date.now()),
+      edited: null
     };
 
     await req.app.db
@@ -57,7 +59,10 @@ const updateDiscountCode = async (req, res) => {
     await req.app.db
       .get("discount_codes")
       .find({ id: req.params.id })
-      .assign(req.body)
+      .assign({
+        ...req.body,
+        edited: new Date(Date.now())
+      })
       .write();
 
     res.send(await req.app.db

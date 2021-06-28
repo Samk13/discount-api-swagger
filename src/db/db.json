@@ -3,35 +3,67 @@
     {
       "id": "iEuOBYkU",
       "description": "description for the coupon ",
-      "title": "The Little Book of Semaphores",
+      "title": "Discount title",
       "discount_type": "percentage",
       "freeShipping": false,
-      "currency": "sek",
+      "currency": "SEK",
       "expired": false,
       "amount": "12",
-      "usedBy": ""
+      "usedBy": "",
+      "created": "2021-06-28T09:44:23.205Z",
+      "edited": null
     },
     {
       "id": "ukjXyUuM",
-      "title": "The Elements of Programming Style",
+      "title": "Discount title",
       "description": "description for the coupon",
       "discount_type": "percentage",
       "freeShipping": false,
-      "currency": "sek",
+      "currency": "SEK",
       "expired": false,
       "amount": "12",
-      "usedBy": ""
+      "usedBy": "",
+      "created": "2021-06-28T09:44:23.205Z",
+      "edited": null
     },
     {
       "id": "BDUDxb6F",
       "description": "description for the coupon",
-      "title": "The New Turing Omnibus",
+      "title": "Discount title",
       "discount_type": "percentage",
       "freeShipping": false,
-      "currency": "sek",
+      "currency": "SEK",
       "expired": false,
       "amount": "12",
-      "usedBy": ""
+      "usedBy": "",
+      "created": "2021-06-28T09:44:23.205Z",
+      "edited": null
+    },
+    {
+      "id": "rrrQ_RnL",
+      "title": "discount code",
+      "description": "description for the discount visible to the user",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "expired": false,
+      "currency": "SEK",
+      "amount": "12",
+      "usedBy": "logedIn user",
+      "created": "2021-06-28T09:44:23.205Z",
+      "edited": null
+    },
+    {
+      "id": "UssGuD0W",
+      "title": "discount code",
+      "description": "description for the discount visible to the user",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "expired": false,
+      "currency": "SEK",
+      "amount": "12",
+      "usedBy": "logedIn user",
+      "created": "2021-06-28T09:44:23.205Z",
+      "edited": null
     }
   ]
 }
