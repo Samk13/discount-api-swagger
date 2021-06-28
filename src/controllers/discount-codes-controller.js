@@ -2,7 +2,7 @@ const {
   writeDiscount,
   fetchDiscountById,
   destroyDiscountCode,
-  writeDiscountUpdate,
+  writeDiscountUpdate: writeDiscountEdit,
   fetchAllDiscountCodes,
 } = require("../models/discounts")
 
@@ -42,7 +42,7 @@ const setDiscountCode = async (req, res) => {
 
 const updateDiscountCode = async (req, res) => {
   try {
-    res.send(await writeDiscountUpdate(req))
+    res.send(await writeDiscountEdit(req))
   } catch (error) {
     return res
       .status(500)
