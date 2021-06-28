@@ -1,25 +1,23 @@
-const { nanoid } = require("nanoid");
-const idLength = 8;
-
+const {
+  writeDiscount,
+  fetchDiscountById,
+  destroyDiscountCode,
+  writeDiscountUpdate,
+  fetchAllDiscountCodes,
+} = require("../models/discounts")
 
 const getAllDiscountCodes = async (req, res) => {
   try {
-    const discount_codes = await req.app.db.get("discount_codes");
-    res.send(discount_codes);
-
+    res.send(await fetchAllDiscountCodes(req))
   } catch(error) {
     return res.status(500).send(error)
   }
-
 }
+
 
 const getDiscountCodeById = async (req, res) => {
   try {
-    const discount_code = await req.app.db
-      .get("discount_codes")
-      .find({ id: req.params.id })
-      .value();
-
+    const discount_code = await fetchDiscountById(req)
     if(!discount_code){
       res.sendStatus(404)
     }
@@ -34,19 +32,7 @@ const getDiscountCodeById = async (req, res) => {
 
 const setDiscountCode = async (req, res) => {
   try {
-    const discountCode = {
-      ...req.body,
-      id: nanoid(idLength),
-      created: new Date(Date.now()),
-      edited: null
-    };
-
-    await req.app.db
-      .get("discount_codes")
-      .push(discountCode)
-      .write();
-
-    res.send(discountCode)
+    res.send(await writeDiscount(req))
   } catch (error) {
     return res
       .status(500)
@@ -56,19 +42,7 @@ const setDiscountCode = async (req, res) => {
 
 const updateDiscountCode = async (req, res) => {
   try {
-    await req.app.db
-      .get("discount_codes")
-      .find({ id: req.params.id })
-      .assign({
-        ...req.body,
-        edited: new Date(Date.now())
-      })
-      .write();
-
-    res.send(await req.app.db
-      .get("discount_codes")
-      .find({ id: req.params.id })
-    );
+    res.send(await writeDiscountUpdate(req))
   } catch (error) {
     return res
       .status(500)
@@ -76,13 +50,15 @@ const updateDiscountCode = async (req, res) => {
   }
 }
 
-const deleteDiscountCode = async (req, res) => {
-  await req.app.db
-    .get("discount_codes")
-    .remove({ id: req.params.id })
-    .write();
 
-  res.sendStatus(200);
+
+const deleteDiscountCode = async (req, res) => {
+  try {
+    await destroyDiscountCode(req)
+    res.sendStatus(200)
+  } catch (error) {
+    throw new Error(error)
+  }
 }
 
 
