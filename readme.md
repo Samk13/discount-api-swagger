@@ -78,13 +78,7 @@ your code. We’re interested in your structure, practices and design. So we wou
 
 to:
 
-- Implement two of its endpoints:
-- Generate a discount code
-- The brand wants to create X number of discount codes
-- Fetch a discount code
-- A user of the system gets a discount code
-- Document your endpoints.
-- Document how to set up and start the application.
+-[x] Implement two of its endpoints: -[x] Generate a discount code -[x] The brand wants to create X number of discount codes -[x] Fetch a discount code -[x] A user of the system gets a discount code -[x] Document your endpoints. -[x] Document how to set up and start the application.
 
 - The storage for discount codes in the service can be a real database, something in memory or just hard coded mock data as you like and have time for. Even if you end up using a simplified datastore we are interested in how you model and structure the data.
 
