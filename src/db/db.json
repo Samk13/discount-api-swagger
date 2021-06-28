@@ -38,6 +38,58 @@
       "usedBy": "",
       "created": "2021-06-28T09:44:23.205Z",
       "edited": null
+    },
+    {
+      "id": "ig0KULRW",
+      "description": "description for the discount visible to the user",
+      "title": "discount code",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "SEK",
+      "expired": false,
+      "amount": "12",
+      "usedBy": "logedIn user",
+      "created": "2021-06-28T22:27:15.943Z",
+      "edited": null
+    },
+    {
+      "id": "jwwz0S_5",
+      "description": "description for the discount visible to the user",
+      "title": "discount code",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "SEK",
+      "expired": false,
+      "amount": "12",
+      "usedBy": "logedIn user",
+      "created": "2021-06-28T22:27:15.943Z",
+      "edited": null
+    },
+    {
+      "id": "GO3Ekw5A",
+      "description": "description for the discount visible to the user",
+      "title": "discount code",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "SEK",
+      "expired": false,
+      "amount": "12",
+      "usedBy": "logedIn user",
+      "created": "2021-06-28T22:27:17.562Z",
+      "edited": null
+    },
+    {
+      "id": "uqbOVPlL",
+      "description": "description for the discount visible to the user",
+      "title": "discount code",
+      "discount_type": "percentage",
+      "freeShipping": false,
+      "currency": "SEK",
+      "expired": false,
+      "amount": "12",
+      "usedBy": "logedIn user",
+      "created": "2021-06-28T22:27:17.562Z",
+      "edited": null
     }
   ]
 }

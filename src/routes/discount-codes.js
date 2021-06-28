@@ -49,6 +49,9 @@ const {
  *         usedBy:
  *           type: string
  *           description: the user who used this discount coupon
+ *         copies:
+ *           type: string
+ *           description: Number of copies to generate, its optional, will default to one if you don't specify the number
  *       example:
  *         title: discount code
  *         description: description for the discount visible to the user
@@ -58,7 +61,7 @@ const {
  *         currency: SEK
  *         amount: "12"
  *         usedBy: logedIn user
- *
+ *         copies: "2"
  */
 
  /**
@@ -87,7 +90,6 @@ const {
  *         description: The Discount_code was not found
  */
 
-// TODO add validation and auth middleware to all routes
 router.get("/", getAllDiscountCodes);
 
 /**
@@ -106,7 +108,7 @@ router.get("/", getAllDiscountCodes);
  *     responses:
  *       200:
  *         description: The Discount_code description by id
- *         contens:
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Discount_code'
