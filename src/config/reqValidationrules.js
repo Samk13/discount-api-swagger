@@ -1,4 +1,5 @@
 
+const { maxCopies } = require("../config/general")
 
 const postDiscountParams = [
   {
@@ -42,6 +43,12 @@ const postDiscountParams = [
     required: true,
     type: 'string',
     validator_functions: [(param) => {return param.length > 1}]
+  },
+  {
+    param_key: 'copies',
+    required: false,
+    type: 'string',
+    validator_functions: [(param) => {return parseInt(param) > 0 && parseInt(param) < maxCopies }]
   },
 ]
 
