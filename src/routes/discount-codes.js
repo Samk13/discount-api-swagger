@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
-
-
+const { postDiscountParams } = require("../config/reqValidationrules")
+const { validateParams } = require("../middlewares/reqValidator")
+const express = require("express")
+const router = express.Router()
 const {
   getAllDiscountCodes,
   getDiscountCodeById,
@@ -10,9 +10,6 @@ const {
   setDiscountCode
 } = require("../controllers/discount-codes-controller")
 
-const { validateParams } = require("../middlewares/reqValidator")
-
-const { postDiscountParams } = require("../config/reqValidationrules")
 /**
  * @swagger
  * components:
@@ -33,7 +30,7 @@ const { postDiscountParams } = require("../config/reqValidationrules")
  *           description: The Discount code title
  *         type:
  *           type: string
- *           description: The Discount_code type [percentage, freeShipping,buyoneGetOne]
+ *           description: The Discount_code type [percentage, freeShipping,buy one Get One]
  *         description:
  *           type: string
  *           description: description for the deal the user will get if he use the code
@@ -86,6 +83,8 @@ const { postDiscountParams } = require("../config/reqValidationrules")
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Discount_code'
+ *       404:
+ *         description: The Discount_code was not found
  */
 
 // TODO add validation and auth middleware to all routes
@@ -136,6 +135,8 @@ router.get("/:id", getDiscountCodeById);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Discount_code'
+ *       400:
+ *        description: The Discount_code request data is not matching the validation schema
  *       500:
  *         description: Some server error
  */
@@ -168,13 +169,15 @@ router.post("/",validateParams(postDiscountParams), setDiscountCode);
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Discount_code'
+ *      400:
+ *        description: The Discount_code request data is not matching the validation schema
  *      404:
  *        description: The Discount_code was not found
  *      500:
  *        description: Some error happened
  */
 
-router.put("/:id", updateDiscountCode);
+router.put("/:id",validateParams(postDiscountParams), updateDiscountCode);
 
 /**
  * @swagger
@@ -193,6 +196,8 @@ router.put("/:id", updateDiscountCode);
  *     responses:
  *       200:
  *         description: The discount_code was deleted successfully
+ *       400:
+ *        description: The Discount_code request data is not matching the validation schema
  *       404:
  *         description: The discount_code was not found
  */
