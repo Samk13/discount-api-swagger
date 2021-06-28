@@ -53,7 +53,6 @@ const { postDiscountParams } = require("../config/reqValidationrules")
  *           type: string
  *           description: the user who used this discount coupon
  *       example:
- *         id: d5fE_asz
  *         title: discount code
  *         description: description for the discount visible to the user
  *         discount_type: percentage
