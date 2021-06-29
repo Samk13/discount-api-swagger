@@ -15,4 +15,4 @@ EXPOSE 4000
 # uncomment this for production build
 # CMD ["npm","start"]
 # comment this for or production build
-CMD ["yarn", "start:node"]
+CMD ["yarn", "start:dev"]
