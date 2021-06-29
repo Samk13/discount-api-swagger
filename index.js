@@ -1,12 +1,12 @@
-require("dotenv").config()
+require("dotenv").config();
 const low = require("lowdb");
-const cors = require("cors");
+// const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const discount_code_router = require("./src/routes/discount-codes");
 const swaggerUI = require("swagger-ui-express");
-
+const { swaggerOptions } = require("./src/config/general");
 const PORT = process.env.PORT || 4000;
 
 const FileSync = require("lowdb/adapters/FileSync");
@@ -15,24 +15,7 @@ const db = low(adapter);
 
 db.defaults({ discount_codes: [] }).write();
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Discount code API",
-      version: "1.0.0",
-      description: "Billogram discount code API code test",
-    },
-    servers: [
-      {
-        url: "http://localhost:4000",
-      },
-    ],
-  },
-  apis: ["./src/routes/*.js"],
-};
-
-const specs = swaggerJsDoc(options);
+const specs = swaggerJsDoc(swaggerOptions);
 
 const app = express();
 
@@ -40,10 +23,9 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 app.db = db;
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
-
 app.use("/api/discount_code", discount_code_router);
 
 app.get('/', (req, res) => {
