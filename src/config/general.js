@@ -1,5 +1,6 @@
 
 const maxCopies = 4
+const strMinLength = 4
 
 const swaggerOptions = {
   definition: {
@@ -21,5 +22,6 @@ const swaggerOptions = {
 
 module.exports = {
   maxCopies,
+  strMinLength,
   swaggerOptions
 }

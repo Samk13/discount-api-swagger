@@ -29,16 +29,16 @@ const validateParams = (requestParams) => {
   }
 };
 
-const checkParamPresent = function (reqParams, paramObj) {
+const checkParamPresent = (reqParams, paramObj) => {
   return (reqParams.includes(paramObj.param_key));
 };
 
-const checkParamType = function (reqParam, paramObj) {
+const checkParamType = (reqParam, paramObj) => {
   const reqParamType = typeof reqParam;
   return reqParamType === paramObj.type;
 };
 
-const runValidators = function (reqParam, paramObj) {
+const runValidators = (reqParam, paramObj) => {
   for (let validator of paramObj.validator_functions) {
       if (!validator(reqParam)) {
           return false

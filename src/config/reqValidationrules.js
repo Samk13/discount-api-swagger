@@ -1,18 +1,18 @@
 
-const { maxCopies } = require("../config/general")
+const { maxCopies, strMinLength } = require("../config/general")
 
 const postDiscountParams = [
   {
     param_key: 'title',
     required: true,
     type: 'string',
-    validator_functions: [(param) => {return param.length > 4}]
+    validator_functions: [(param) => {return param.length > strMinLength}]
   },
   {
     param_key: 'description',
     required: false,
     type: 'string',
-    validator_functions: [(param) => {return param.length > 4}]
+    validator_functions: [(param) => {return param.length > strMinLength}]
   },
   {
     param_key: 'freeShipping',
@@ -24,7 +24,7 @@ const postDiscountParams = [
     param_key: 'discount_type',
     required: true,
     type: 'string',
-    validator_functions: [(param) => {return param.length > 4}]
+    validator_functions: [(param) => {return param.length > strMinLength}]
   },
   {
     param_key: 'currency',
