@@ -1,13 +1,13 @@
 {
   "name": "discount-api-swagger",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discount api for Billogram",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon ./index.js --ignore db.json -L",
     "start": "node ./index.js"
   },
-  "author": "",
+  "author": "Sam Arbid",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
