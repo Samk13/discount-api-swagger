@@ -30,7 +30,14 @@ const postDiscountParams = [
     param_key: 'currency',
     required: false,
     type: 'string',
-    validator_functions: [(param) => {return param.length > 1}]
+    validator_functions: [
+      (param) => {
+        const currency = ["SEK", "DKK", "EUR", "GBP", "NOK", "PLN", "USD"]
+        if (currency.indexOf(param) === -1) {
+          return false
+        }
+        return true
+      }]
   },
   {
     param_key: 'expired',
