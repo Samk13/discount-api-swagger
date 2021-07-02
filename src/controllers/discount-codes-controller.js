@@ -52,6 +52,7 @@ const updateDiscountCode = async (req, res) => {
 
 
 
+
 const deleteDiscountCode = async (req, res) => {
   try {
     await destroyDiscountCode(req)
